@@ -17,13 +17,19 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigin = process.env.CLIENT_URL || "*";
-app.use(
-  cors({
-    origin: allowedOrigin,
-    credentials: true,
-  }),
-);
+const clientUrlEnv = process.env.CLIENT_URL || "*";
+const clientOrigins = clientUrlEnv.split(",").map((origin) => origin.trim()).filter(Boolean);
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || clientOrigins.includes("*") || clientOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+    callback(new Error("CORS policy blocked this request"));
+  },
+  credentials: process.env.CORS_ALLOW_CREDENTIALS !== "false",
+};
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(morgan("tiny"));
@@ -34,6 +40,7 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
+const HOST = process.env.HOST || "0.0.0.0";
 const startServer = async () => {
   try {
     const connections = await connectDatabases();
@@ -48,8 +55,8 @@ const startServer = async () => {
       Subject: createSubjectModel(connections.userDb),
     };
     app.use("/api", createApiRouter(models));
-    app.listen(PORT, () => {
-      console.log(`Server listening on http://localhost:${PORT}`);
+    app.listen(PORT, HOST, () => {
+      console.log(`Server listening on http://${HOST}:${PORT}`);
     });
   } catch (error) {
     console.error("Database setup failed:", error.message);
