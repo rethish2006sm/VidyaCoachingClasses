@@ -5,7 +5,7 @@ const Herobtn = ({
   label = "Explore Course",
   filled = false,
   onClick,
-  fullWidth = true // ✅ optional control
+  fullWidth = true // ✅ optional controlsssss
 }) => {
   const baseClasses =
     "flex items-center justify-center gap-2 font-semibold tracking-wide uppercase transition-all duration-300 shadow-md active:scale-95 " +
