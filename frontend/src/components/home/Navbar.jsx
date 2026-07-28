@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: "ABOUT", path: "/about" },
   ];
 
-  // Close mobile menu on route change
+  // Close mobile menu on route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
