@@ -25,7 +25,7 @@ const useMagnet = (strength = 0.3) => {
   return { ref, handleMouseMove, handleLeave };
 };
 
-/* ---------------- ANIMATION ---------------- */
+/* ---------------- ANIMATION ------------- */
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
