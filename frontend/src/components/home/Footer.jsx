@@ -5,7 +5,7 @@ import instagramIcon from "../../assets/instagram.png";
 import linkedinIcon from "../../assets/linkedin.png";
 import twitterIcon from "../../assets/twitter.png";
 
-/* ---------------- MAGNETIC ------------------- */
+/* ---------------- MAGNETIC -------------- */
 const useMagnet = (strength = 0.3) => {
   const ref = useRef(null);
 
