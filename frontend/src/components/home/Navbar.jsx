@@ -34,7 +34,7 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScroll = window.pageYOffset;
       
-      // Glassmorphism effect trigger
+      // Glassmorphism effect triggersssssssssssssssss
       setScrolled(currentScroll > 20);
 
       // Hide/Show logic
