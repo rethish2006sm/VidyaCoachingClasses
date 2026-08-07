@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Camera } from "lucide-react";
 
-/* ---------- Helper ------------------------ */
+/* ---------- Helper ------------ */
 const formatUploadDate = (value) => {
   if (!value) return "Captured moment";
   try {
